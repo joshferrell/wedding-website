@@ -1,0 +1,9 @@
+.react-images__view.react-images__view--isModal {
+  display: flex;
+  justify-content: center;
+}
+
+.react-images__view.react-images__view--isModal > img {
+  background: white;
+}
+
