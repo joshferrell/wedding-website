@@ -22,6 +22,7 @@ const Header = () => {
               {
                 children: (
                   <Image
+                    priority
                     src={HeaderImage}
                     quality={100}
                     placeholder="blur"
