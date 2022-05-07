@@ -1,14 +1,16 @@
 import jwt from "jsonwebtoken";
-import AWS from "aws-sdk";
 import { useState } from "react";
 import type { GetServerSidePropsContext } from "next";
 import { Box, Button, Heading } from "@chakra-ui/react";
+
+import s3Init from "../utils/aws";
 
 export const getServerSideProps = async ({
   req,
 }: GetServerSidePropsContext) => {
   const Bucket = process.env.AWS_BUCKET as string;
   const token = req.cookies?.token;
+  const s3 = s3Init();
   if (!token) {
     return {
       redirect: { destination: "/login", permanent: false },
@@ -17,8 +19,6 @@ export const getServerSideProps = async ({
 
   try {
     jwt.verify(token as string, process.env.TOKEN_SECRET as string);
-    AWS.config.update({ region: "us-west-1" });
-    const s3 = new AWS.S3();
     const { Contents = [] } = await s3
       .listObjects({ Bucket, Prefix: "unreviewed" })
       .promise();

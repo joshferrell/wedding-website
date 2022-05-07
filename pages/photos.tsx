@@ -1,19 +1,17 @@
-import AWS from "aws-sdk";
 import { useCallback, useState } from "react";
 import Measure from "react-measure";
 import { Box, Heading } from "@chakra-ui/react";
 import Image from "next/image";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
-import Photos from "../media/photos.svg";
+import s3Init from "../utils/aws";
 
+import Photos from "../media/photos.svg";
 import ImageUploader from "../widgets/image-uploader";
 
 export async function getStaticProps() {
   const Bucket = process.env.AWS_BUCKET as string;
-  AWS.config.update({ region: "us-west-1" });
-
-  const s3 = new AWS.S3();
+  const s3 = s3Init();
 
   const { Contents = [] } = await s3
     .listObjects({ Bucket, Prefix: "approved" })

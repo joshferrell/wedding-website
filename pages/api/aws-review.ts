@@ -1,6 +1,6 @@
 import joi from "joi";
-import AWS from "aws-sdk";
 import { NextApiHandler } from "next";
+import s3Init from "../../utils/aws";
 import validateToken from "../../utils/api-validate";
 
 const schema = joi
@@ -13,6 +13,7 @@ const schema = joi
 
 const review: NextApiHandler = async (req, res) => {
   const Bucket = process.env.AWS_BUCKET as string;
+  const s3 = s3Init();
   if (req.method !== "POST") {
     res.status(404).end();
     return;
@@ -37,9 +38,6 @@ const review: NextApiHandler = async (req, res) => {
 
   const { fileName, approved } = body as any;
   console.log(body);
-
-  AWS.config.update({ region: "us-west-1" });
-  const s3 = new AWS.S3();
 
   const path = approved ? "approved" : "rejected";
   await s3
