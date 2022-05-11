@@ -10,12 +10,15 @@ import {
   Textarea,
   VisuallyHidden,
   Link,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { object, string } from "yup";
-import { Formik, Form, Field, FieldProps } from "formik";
+import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
 import Uploader from "./image-uploader";
 import SendAMessage from "../media/send-message.svg";
+import { useState } from "react";
 
 type FormProps = {
   name: string;
@@ -23,6 +26,33 @@ type FormProps = {
 };
 
 const HomeForm = () => {
+  const [status, setStatus] = useState({ error: false, success: false });
+
+  const handleSubmit = (
+    pending: FormProps,
+    helpers: FormikHelpers<FormProps>
+  ) => {
+    setStatus({ error: false, success: false });
+    fetch(
+      "https://api.sheety.co/4c24160bcee10740d98a2293c9f511fc/noteStorage/pending",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pending }),
+      }
+    )
+      .then(() => {
+        setStatus({ error: false, success: true });
+      })
+      .catch((err) => {
+        console.warn(err);
+        setStatus({ error: true, success: false });
+      })
+      .finally(() => helpers.setSubmitting(false));
+  };
+
   return (
     <Box sx={{ position: "relative", pb: [0, 0, "50px"] }}>
       <Box
@@ -34,7 +64,7 @@ const HomeForm = () => {
           bg: "white",
           mx: "auto",
           boxShadow: "2xl",
-          zIndex: 20,
+          zIndex: 900,
           position: "relative",
         }}
       >
@@ -60,11 +90,24 @@ const HomeForm = () => {
             <SendAMessage width={350} height={62} aria-hidden />
             <VisuallyHidden>Send a message</VisuallyHidden>
           </Heading>
+          {status.success && (
+            <Alert mb={4} status="success">
+              <AlertIcon />
+              Successfully sent message to Alana and Josh!
+            </Alert>
+          )}
+          {status.error && (
+            <Alert mb={4} status="error">
+              <AlertIcon />
+              Something went wrong on our end. You can try refreshing and
+              submitting one more time or coming back to the page later.
+            </Alert>
+          )}
           <Formik<FormProps>
             initialValues={{
               name: "",
             }}
-            onSubmit={console.log}
+            onSubmit={handleSubmit}
             validationSchema={object({
               name: string().required("Enter your name"),
               note: string().nullable().notRequired(),
@@ -84,7 +127,7 @@ const HomeForm = () => {
                       isInvalid={Boolean(form.errors.name && form.touched.name)}
                     >
                       <FormLabel htmlFor="name">Name</FormLabel>
-                      <Input {...field} id="name" />
+                      <Input id="name" {...field} />
                       <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                     </FormControl>
                   )}
@@ -109,6 +152,8 @@ const HomeForm = () => {
                   colorScheme="green"
                   variant="solid"
                   type="submit"
+                  isLoading={props.isSubmitting}
+                  loadingText="Submitting note"
                   sx={{ width: "fit-content" }}
                 >
                   Submit

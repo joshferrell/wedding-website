@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import Measure from "react-measure";
 import { Box, Heading } from "@chakra-ui/react";
-import Image from "next/image";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import s3Init from "../utils/aws";
@@ -26,12 +25,12 @@ export async function getStaticProps() {
     return {
       width,
       height,
-      src: s3.getSignedUrl("getObject", { Bucket, Key }),
+      src: s3.getSignedUrl("getObject", { Bucket, Key, Expires: 60 * 60 * 6 }),
     };
   });
 
   return {
-    props: { urls },
+    props: { urls, revalidate: 60 * 60 * 5 },
   };
 }
 

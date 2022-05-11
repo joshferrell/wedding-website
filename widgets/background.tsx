@@ -44,6 +44,7 @@ const Header = () => {
                 justifyContent: "center",
                 zIndex: 100,
                 position: "relative",
+                px: "16px",
               }}
             >
               <JustMarried
