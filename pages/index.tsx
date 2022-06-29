@@ -1,10 +1,31 @@
 import { Box } from "@chakra-ui/react";
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { DateTime } from "luxon";
 import { ParallaxBanner } from "react-scroll-parallax";
 import Header from "../widgets/background";
 import HomeForm from "../widgets/home-form";
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const dt = DateTime.now();
+  const weddingTime = DateTime.fromISO("2022-06-29T16:25:00", {
+    zone: "UTC-7",
+  });
+
+  if (dt < weddingTime) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "https://www.zola.com/wedding/stein-ferrell",
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
 
 const Home: NextPage = () => (
   <Box>
