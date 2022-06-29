@@ -12,6 +12,7 @@ import PageTen from "../widgets/our-story/page-10";
 import PageEleven from "../widgets/our-story/page-11";
 import PageTwelve from "../widgets/our-story/page-12";
 import PageThirteen from "../widgets/our-story/page-13";
+import PageFourteen from "../widgets/our-story/page-14";
 
 const Main = () => (
   <>
@@ -29,6 +30,7 @@ const Main = () => (
     <PageEleven />
     <PageTwelve />
     <PageThirteen />
+    <PageFourteen />
   </>
 );
 

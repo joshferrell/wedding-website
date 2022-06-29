@@ -9,7 +9,7 @@ import HomeForm from "../widgets/home-form";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const dt = DateTime.now();
-  const weddingTime = DateTime.fromISO("2022-06-29T16:25:00", {
+  const weddingTime = DateTime.fromISO("2022-07-03T18:45:00", {
     zone: "UTC-7",
   });
 

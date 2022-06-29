@@ -24,6 +24,11 @@ const Main = () => (
               mx: "auto",
               overflow: "hidden",
               mt: "250px",
+              "@media screen and (min-width: 950px)": {
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+              },
             }}
           >
             <img

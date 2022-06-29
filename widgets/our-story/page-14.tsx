@@ -11,22 +11,24 @@ const Main = () => (
       justifyContent: "center",
     }}
     layers={[
-      { image: "/our-story/11-bg.webp", speed: -15 },
+      { image: "/our-story/15-bg.webp", speed: -15 },
       {
         children: (
           <Box
             sx={{
               position: "absolute",
-              top: ["100px", "100px", 0],
-              height: ["700px", "700px", "100vh"],
-              width: ["100vw", "100vw"],
-              left: 0,
+              bottom: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
-            <Image
-              src="/our-story/11-fore.webp"
-              layout="fill"
-              objectFit="cover"
+            <img
+              src="/our-story/15-fore.webp"
+              alt="Alana waving at Josh while coffee cup sits on table"
+              style={{ height: "100vh", width: "100%", objectFit: "contain" }}
             />
           </Box>
         ),
@@ -41,7 +43,7 @@ const Main = () => (
               left: "50%",
               transform: "translateX(-50%)",
               px: "16px",
-              maxWidth: [500, 1200],
+              maxWidth: [500, 800],
               color: "white",
               fontSize: ["20px", "28px"],
               fontFamily: "Gentium Book Basic",
@@ -50,14 +52,12 @@ const Main = () => (
             }}
             textShadow="xl"
           >
-            Some time had passed by when Alana hosted a potluck dinner,
+            That night Josh felt so full of love with his heart,
             <br />
-            Josh brought his blueberry nectarine cobbler with amaretti cookie
-            topping, it’s always a winner!
+            &quot;<strong>I love us,</strong> will you be my girlfriend?&quot;
+            he asked Alana.
             <br />
-            Oh, how quickly Alana’s cobbler slice was done,
-            <br />
-            And after Alana took her first bite, she knew that Josh was the one.
+            and that was the start
           </Box>
         ),
       },
