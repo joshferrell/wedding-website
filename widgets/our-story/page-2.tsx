@@ -11,7 +11,7 @@ const Main = () => (
       justifyContent: "center",
     }}
     layers={[
-      { image: "/3-4-background.webp", speed: -15, expanded: true },
+      { image: "/our-story/3-bg.webp", speed: -15, expanded: true },
       {
         children: (
           <Box
@@ -26,7 +26,7 @@ const Main = () => (
             }}
           >
             <Image
-              src="/3-4-bed.webp"
+              src="/our-story/3-bed.webp"
               alt="Josh laying in bed with annoyed look"
               height={515}
               width={900}
@@ -49,7 +49,7 @@ const Main = () => (
             }}
           >
             <Image
-              src="/3-4-table.webp"
+              src="/our-story/3-table.webp"
               alt=""
               aria-hidden
               height={349}

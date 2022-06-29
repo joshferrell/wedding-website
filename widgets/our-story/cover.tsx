@@ -13,7 +13,7 @@ const Cover = () => (
     }}
     layers={[
       {
-        image: "/cover-background.webp",
+        image: "/our-story/cover-bg.webp",
         speed: -15,
         expanded: true,
       },
@@ -31,7 +31,7 @@ const Cover = () => (
           >
             <Image
               alt="Josh and Alana facing each other pressing their forheads against each other."
-              src="/cover-content.webp"
+              src="/our-story/cover-fore.webp"
               width={800}
               height={606}
             />

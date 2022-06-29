@@ -4,6 +4,8 @@ import type { GetServerSidePropsContext } from "next";
 import { Box, Button, Heading } from "@chakra-ui/react";
 
 import s3Init from "../utils/aws";
+import InternalNavbar from "../widgets/internal-navbar";
+import EmptyState from "../widgets/empty-state";
 
 export const getServerSideProps = async ({
   req,
@@ -44,22 +46,10 @@ const Main: React.FC<{ urls: { url: string; key: string }[] }> = ({
 
   if (!urls.length) {
     return (
-      <Box
-        sx={{
-          margin: "64px auto",
-          maxWidth: 800,
-          bg: "green.50",
-          height: 200,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "6px",
-          border: "1px dashed",
-          borderColor: "green.200",
-        }}
-      >
-        <Heading size="lg">Nothing to review!</Heading>
-      </Box>
+      <>
+        <InternalNavbar />
+        <EmptyState />
+      </>
     );
   }
 
@@ -82,27 +72,30 @@ const Main: React.FC<{ urls: { url: string; key: string }[] }> = ({
   };
 
   return (
-    <Box
-      sx={{
-        mx: "auto",
-        maxWidth: 800,
-        display: "flex",
-        flexFlow: "column nowrap",
-        gap: "64px",
-      }}
-    >
-      {urls.map(({ url, key }) => (
-        <Box key={key} sx={{ width: "100%", p: "16px", boxShadow: "lg" }}>
-          <img src={url} alt="" />
-          <Box sx={{ display: "flex", gap: "8px", mt: "24px", mb: "8px" }}>
-            <Button onClick={makeReview(true, key)} colorScheme="green">
-              Approve
-            </Button>
-            <Button onClick={makeReview(false, key)}>Reject</Button>
+    <>
+      <InternalNavbar />
+      <Box
+        sx={{
+          mx: "auto",
+          maxWidth: 800,
+          display: "flex",
+          flexFlow: "column nowrap",
+          gap: "64px",
+        }}
+      >
+        {urls.map(({ url, key }) => (
+          <Box key={key} sx={{ width: "100%", p: "16px", boxShadow: "lg" }}>
+            <img src={url} alt="" />
+            <Box sx={{ display: "flex", gap: "8px", mt: "24px", mb: "8px" }}>
+              <Button onClick={makeReview(true, key)} colorScheme="green">
+                Approve
+              </Button>
+              <Button onClick={makeReview(false, key)}>Reject</Button>
+            </Box>
           </Box>
-        </Box>
-      ))}
-    </Box>
+        ))}
+      </Box>
+    </>
   );
 };
 

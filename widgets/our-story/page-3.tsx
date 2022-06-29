@@ -10,7 +10,7 @@ const Main = () => (
       justifyContent: "center",
     }}
     layers={[
-      { image: "/page-4-bg.webp", speed: -15, expanded: true },
+      { image: "/our-story/4-bg.webp", speed: -15, expanded: true },
       {
         children: (
           <Box
@@ -29,14 +29,14 @@ const Main = () => (
             }}
           >
             <img
-              src="/page-4-left-bed.webp"
+              src="/our-story/4-left-bed.webp"
               alt="Logan laying in bed sound asleep"
               height={500}
               width={686}
             />
             <img
               className="right-bed"
-              src="/page-4-right-bed.webp"
+              src="/our-story/4-right-bed.webp"
               alt="Josh laying in bed with annoyed look"
               height={500}
               width={675}
@@ -53,7 +53,7 @@ const Main = () => (
               mx: "auto",
               px: "16px",
               maxWidth: 900,
-              fontSize: ["16px", "28px"],
+              fontSize: ["24px", "28px"],
               fontFamily: "Gentium Book Basic",
               color: "white",
               textShadow: "1px 1px 2px #000",

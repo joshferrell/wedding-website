@@ -14,7 +14,7 @@ const Header = () => {
       <Box
         sx={{
           position: "relative",
-          height: "100vh",
+          height: `calc(100vh - ${NAV_HEIGHT})`,
           bg: "green.800",
         }}
       >
@@ -77,7 +77,7 @@ const Header = () => {
               pointerEvents: "none",
               width: "auto",
               userSelect: "none",
-              marginLeft: "-10px",
+              marginLeft: "-18px",
               height: `calc(100vh - ${NAV_HEIGHT})`,
             }}
           />
@@ -89,7 +89,7 @@ const Header = () => {
               pointerEvents: "none",
               width: "auto",
               userSelect: "none",
-              marginRight: "-10px",
+              marginRight: "-18px",
               transform: "scaleX(-1)",
               height: `calc(100vh - ${NAV_HEIGHT})`,
             }}

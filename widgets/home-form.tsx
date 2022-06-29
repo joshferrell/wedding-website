@@ -54,7 +54,18 @@ const HomeForm = () => {
   };
 
   return (
-    <Box sx={{ position: "relative", pb: [0, 0, "50px"] }}>
+    <Box
+      sx={{
+        position: "absolute",
+        pb: [0, 0, "50px"],
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 100,
+        "@media (max-width: 1200px)": {
+          position: "relative",
+        },
+      }}
+    >
       <Box
         sx={{
           maxWidth: 800,

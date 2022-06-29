@@ -13,7 +13,7 @@ const Uploader: React.FC<{ height?: number }> = ({ height = 200 }) => {
     const uppyOptions = {
       debug: true,
       restrictions: {
-        maxFileSize: 5_000_000,
+        maxFileSize: 15_000_000,
         allowedFileTypes: ["image/*", ".jpg", ".jpeg", ".png"],
       },
       locale: {

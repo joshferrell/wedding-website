@@ -9,6 +9,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["jferrell-wedding.s3.us-west-1.amazonaws.com"],
+  },
 };
 
 module.exports = nextConfig;

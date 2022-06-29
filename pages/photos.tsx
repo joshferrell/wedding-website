@@ -4,11 +4,12 @@ import { Box, Heading } from "@chakra-ui/react";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import s3Init from "../utils/aws";
+import Image from "next/image";
 
 import Photos from "../media/photos.svg";
 import ImageUploader from "../widgets/image-uploader";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const Bucket = process.env.AWS_BUCKET as string;
   const s3 = s3Init();
 
@@ -27,10 +28,10 @@ export async function getStaticProps() {
       height,
       src: s3.getSignedUrl("getObject", { Bucket, Key, Expires: 60 * 60 * 6 }),
     };
-  });
+  }).reverse();
 
   return {
-    props: { urls, revalidate: 60 * 60 * 5 },
+    props: { urls },
   };
 }
 
