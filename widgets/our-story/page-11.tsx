@@ -23,8 +23,6 @@ const Main = () => (
           >
             <img
               src="/our-story/12-fore.webp"
-              layout="fill"
-              objectFit="contain"
               alt="Alana waving at Josh while coffee cup sits on table"
               style={{ width: "100vw", height: "auto" }}
             />
