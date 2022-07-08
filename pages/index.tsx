@@ -7,26 +7,6 @@ import { ParallaxBanner } from "react-scroll-parallax";
 import Header from "../widgets/background";
 import HomeForm from "../widgets/home-form";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const dt = DateTime.now();
-  const weddingTime = DateTime.fromISO("2022-07-03T18:45:00", {
-    zone: "UTC-7",
-  });
-
-  if (dt < weddingTime) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "https://www.zola.com/wedding/stein-ferrell",
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
-
 const Home: NextPage = () => (
   <Box>
     <Head>
